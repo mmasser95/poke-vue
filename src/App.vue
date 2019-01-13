@@ -1,9 +1,11 @@
 <template lang="pug">
-  #app.container
+  #app.container-fluid
     b-jumbotron(header="App")
     .row
       .col-lg-2
-      .col-lg-9
+        router-link(to="/regions")="Regions"
+        router-link(to="/locations")="Locations"
+      .col-lg
         router-view
 
 </template>
