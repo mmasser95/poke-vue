@@ -19,7 +19,7 @@
         img(v-bind:src="pokemon.sprites.front_default" v-if="s")
         h3="Tipo"
         ul
-          li(v-for="t in pokemon.types")="{{t.type.name}}"
+          li(v-for="t in pokemon.types")
             img(v-if="t.type.name==='poison'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/1/10/Tipo_veneno.gif")
             img(v-if="t.type.name==='grass'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/d/d6/Tipo_planta.gif")
             img(v-if="t.type.name==='fire'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/c/ce/Tipo_fuego.gif")
@@ -29,9 +29,17 @@
             img(v-if="t.type.name==='steel'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/d/d9/Tipo_acero.gif")
             img(v-if="t.type.name==='dragon'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/0/01/Tipo_drag%C3%B3n.gif")
             img(v-if="t.type.name==='electric'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/1/1b/Tipo_el%C3%A9ctrico.gif")
-            img(v-if="t.type.name==='ghost'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/f/fe/Tipo_bicho.gif")
+            img(v-if="t.type.name==='ghost'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/4/47/Tipo_fantasma.gif")
+            img(v-if="t.type.name==='flying'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/e/e1/Tipo_volador.gif")
+            img(v-if="t.type.name==='normal'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/3/32/Tipo_normal.gif")
+            img(v-if="t.type.name==='ground'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/1/1d/Tipo_tierra.gif")
+            img(v-if="t.type.name==='rock'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/e/e0/Tipo_roca.gif")
+            img(v-if="t.type.name==='ice'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/4/40/Tipo_hielo.gif")
+            img(v-if="t.type.name==='fighting'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/b/b7/Tipo_lucha.gif")
+            img(v-if="t.type.name==='fairy'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/b/bc/Tipo_hada.gif")
+            img(v-if="t.type.name==='dark'" src="https://vignette.wikia.nocookie.net/es.pokemon/images/8/82/Tipo_siniestro.gif")
             
-            
+
         table.table
           tr
             th="ID"
@@ -48,6 +56,18 @@
           tr
             th="Experiencia base"
             td="{{pokemon.base_experience}}"
+        h3.text-center="Movimientos"
+        .row
+          .col-lg
+            .card(v-for="m in pokemon.moves")
+              .card-header
+                h4="{{m.move.name}}"
+              .card-body
+                h5.secondary-text(v-if="d.version_group.name==='firered-leafgreen'",v-for="d in m.version_group_details")="{{d.version_group.name}}"
+                    p.text-info="Se aprende en el nivel: {{d.level_learned_at}}"
+                    p.text-warning="Se aprende con: {{d.move_learn_method.name}}"
+                    hr
+            
         h3.text-center="Apariciones"
         ul
           li(v-for="g in pokemon.game_indices")="{{g.version.name}}"
@@ -55,14 +75,6 @@
         h2.text-center="Habilidades"
         ul
           li(v-for="a in pokemon.abilities")="{{a.ability.name}}"
-        h2.text-center="Movimientos"
-        table.table
-          tr
-            th="Movimiento"
-            th="LVL."
-          tr(v-for="m in pokemon.moves")
-            td="{{m.move.name}}"
-            td="{{m.version_group_details[0].level_learned_at}}"
 </template>
 
 
@@ -104,7 +116,10 @@ export default {
 }
 </script>
 <style>
-  img{
+  li img{
     width: 50px
+  }
+  .card{
+    margin-top: 20px
   }
 </style>
